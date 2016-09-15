@@ -11,7 +11,8 @@ var cli = meow(
 	"\n" +
 	"Flags:" + "\n" +
 	"\t" + "[--tap] : Output test results in tap format (useful for chaining in a reporter e.g. tap-teamcity)" + "\n" +
-	"\t" + "[--debug] : Enable debug mode (no flushing of temp. files and prints the webpack stats object)"
+	"\t" + "[--debug] : Enable debug mode (no flushing of temp. files and prints the webpack stats object)" + 
+	"\t" + "[--watch] : Enable Ava watch mode"
 );
 
 run(cli.input[0], cli.flags, cli.showHelp);

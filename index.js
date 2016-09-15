@@ -64,9 +64,9 @@ function runWebpack(config) {
 	});
 }
 
-function runAva(emittedFiles, tap) {
+function runAva(emittedFiles, tap, watch) {
 	return new Promise(function (resolve, reject) {
-		exec('ava ' + (tap ? '--tap ' : '') + emittedFiles.join(' '), {},  function (err, stdout, stderr) {
+		exec('ava ' + (tap ? '--tap ' : '') + (watch ? '--watch ' : '') + emittedFiles.join(' '), {},  function (err, stdout, stderr) {
 			var output = tap ? stdout : stderr;
 
 			if(err) {
@@ -145,7 +145,7 @@ function run(input, flags, showHelp) {
 				console.log(stats.toString({ colors: true }));
 			}
 
-			runAva(emittedFiles, flags.tap).then(
+			runAva(emittedFiles, flags.tap, flags.watch).then(
 				function(res) { return complete(res, false, cleanOutput); },
 				function(err) { return complete(err, true, cleanOutput); }
 			)
